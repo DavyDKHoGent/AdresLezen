@@ -123,8 +123,7 @@ namespace AdresLezen
         public void VoegGemeenteToe(Gemeente gemeente)
         {
             SqlConnection connection = GetConnection();
-            string query = "SET IDENTITY_INSERT gemeente ON INSERT INTO gemeente (niscode, gemeentenaam) VALUES(@niscode, @gemeentenaam)" +
-                "SET IDENTITY_INSERT gemeente OFF";
+            string query = "INSERT INTO gemeente (niscode, gemeentenaam) VALUES(@niscode, @gemeentenaam)";
             using (SqlCommand command = connection.CreateCommand())
             {
                 connection.Open();
@@ -150,8 +149,7 @@ namespace AdresLezen
         public void VoegStraatnaamToe(Straatnaam straatnaam)
         {
             SqlConnection connection = GetConnection();
-            string query = "SET IDENTITY_INSERT straatnaam ON INSERT INTO straatnaam (id, straatnaam, niscode) VALUES(@id, @straatnaam, @niscode)" +
-                "SET IDENTITY_INSERT straatnaam OFF";
+            string query = "INSERT INTO straatnaam (id, straatnaam, niscode) VALUES(@id, @straatnaam, @niscode)";
             using (SqlCommand command = connection.CreateCommand())
             {
                 connection.Open();
@@ -180,8 +178,8 @@ namespace AdresLezen
         {
             SqlConnection connection = GetConnection();
             string queryS = "INSERT INTO adreslocatie (x, y) output INSERTED.ID VALUES(@x, @y)";
-            string querySC = "SET IDENTITY_INSERT adres ON INSERT INTO adres (id, straatnaamid, huisnummer, appartementnummer, busnummer, huisnummerlabel, adreslocatieid) " +
-                "VALUES(@id, @straatnaamid, @huisnummer, @appartementnummer, @busnummer, @huisnummerlabel, @adreslocatieid) SET IDENTITY_INSERT adres OFF";
+            string querySC = "INSERT INTO adres (id, straatnaamid, huisnummer, appartementnummer, busnummer, huisnummerlabel, adreslocatieid) " +
+                "VALUES(@id, @straatnaamid, @huisnummer, @appartementnummer, @busnummer, @huisnummerlabel, @adreslocatieid)";
 
             using (SqlCommand command1 = connection.CreateCommand())
             using (SqlCommand command2 = connection.CreateCommand())

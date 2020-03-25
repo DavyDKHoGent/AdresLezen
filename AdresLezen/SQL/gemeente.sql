@@ -1,5 +1,5 @@
-﻿CREATE TABLE [gemeente]
+﻿CREATE TABLE [dbo].[gemeente]
 (
-	[niscode] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [gemeentenaam] NVARCHAR(250) NULL
+	[niscode] INT NOT NULL PRIMARY KEY, 
+    [gemeentenaam] NVARCHAR(250) NOT NULL
 )

@@ -57,7 +57,7 @@ namespace AdresLezen
                     connection.Close();
                 }
             }
-        } // tostring() van string nog aanpassen?
+        } 
         public SortedSet<Straatnaam> GetStratenPerGemeente(string gemeentenaam)
         {
             SqlConnection connection = GetConnection();
@@ -99,7 +99,7 @@ namespace AdresLezen
                 }
                 return straten;
             }
-        } // OK!
+        } 
         public List<Adres> GetAdressenPerStraatnaamId(int straatnaamid)
         {
             SqlConnection connection = GetConnection();
@@ -132,6 +132,38 @@ namespace AdresLezen
                 }
                 return adressen;
             }
-        } // OK!
+        } 
+        public Dictionary<string, int> GetAantalStratenPerGemeente()
+        {
+            Dictionary<string, int> uitkomst = new Dictionary<string, int>();
+            string query = "SELECT gemeentenaam FROM gemeente";
+            SqlConnection connection = GetConnection();
+
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandText = query;
+                connection.Open();
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string naam = (string)reader["gemeentenaam"];
+                        int aantal = GetStratenPerGemeente(naam).Count;
+                        uitkomst.Add(naam, aantal);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+                return uitkomst;
+            }
+        } 
     }
 }

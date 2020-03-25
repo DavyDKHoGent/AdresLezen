@@ -26,7 +26,7 @@ namespace AdresLezen
         public int Postcode { get; set; }
         public override string ToString()
         {
-            return ($"{ID}, {Appartementnummer}, {Busnummer}, {Huisnummer}, {HuisnummerLabel}, {Locatie.ID}, {Straatnaam.Gemeente}, {Straatnaam.Naam}");
+            return ($"id:{ID}, appnr:{Appartementnummer}, busnr:{Busnummer}, huisnr:{Huisnummer}, huinrlabel:{HuisnummerLabel}, locatieid:{Locatie.ID}, gemeente:{Straatnaam.Gemeente}, straatnaam:{Straatnaam.Naam}");
         }
     }
 }

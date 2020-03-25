@@ -5,12 +5,11 @@ namespace AdresLezen
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             string connectionString = @"Data Source=LAPTOP-1U6AQSEQ\SQLEXPRESS;Initial Catalog=AdresLezen;Integrated Security=True";
             AdresBeheer adb = new AdresBeheer(connectionString);
             //adb.LeesGML();
-            adb.TestGML();
 
             Bevraging bvg = new Bevraging(connectionString);
             //Adres adres = bvg.GetAdres(2000000001);
@@ -23,6 +22,10 @@ namespace AdresLezen
             //List<Adres> adressen = bvg.GetAdressenPerStraatnaamId(5);
             //foreach (var a in adressen)
             //    Console.WriteLine(a);
+
+            Dictionary<string, int> stratenPerGem = bvg.GetAantalStratenPerGemeente();
+            foreach (var x in stratenPerGem)
+                Console.WriteLine($"[{x.Key};{x.Value}]");
         }
     }
 }
